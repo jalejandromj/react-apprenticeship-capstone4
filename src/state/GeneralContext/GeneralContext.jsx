@@ -11,7 +11,7 @@ function useGeneralContext() {
 }
 
 function GeneralContextProvider({ children }) {
-  const [displaySidebar, setDisplaySidebar] = useState(true);
+  const [displaySidebar, setDisplaySidebar] = useState(false);
 
   return (
     <GeneralContext.Provider value={{ displaySidebar, setDisplaySidebar }}>

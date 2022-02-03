@@ -2,8 +2,8 @@ import styled from 'styled-components';
 
 const LayoutDiv = styled.div`
   display: grid;
-  grid-template-rows: 8% 92%;
-  -ms-grid-rows: 8% 92%;
+  grid-template-rows: 9% 92%;
+  -ms-grid-rows: 9% 92%;
   width: 100vw;
   height: 100vh;
   &.sidebar-display {

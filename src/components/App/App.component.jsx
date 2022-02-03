@@ -12,7 +12,7 @@ function App() {
       <GeneralContextProvider>
         <Layout>
           <Routes>
-            <Route exact path="/" element={<div>Home</div>}></Route>
+            <Route exact path="/" element={<div><h1>Home</h1></div>}></Route>
           </Routes>
         </Layout>
       </GeneralContextProvider>

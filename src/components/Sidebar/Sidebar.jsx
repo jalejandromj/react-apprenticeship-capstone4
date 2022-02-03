@@ -16,14 +16,14 @@ function Sidebar() {
         <Col
             sm={12}
           >
-          <Button style={{width: "100%"}} onClick={() => navigate(`/notes`)}>My notes</Button>
+          <Button style={{width: "100%"}} onClick={() => navigate(`/notes`)}><span>My notes</span></Button>
         </Col>
       </Row>
       <Row>
         <Col
             sm={12}
           >
-          <Button style={{width: "100%"}} onClick={() => navigate(`/notes/archived`)}>Archived</Button>
+          <Button style={{width: "100%"}} onClick={() => navigate(`/notes/archived`)}><span>Archived</span></Button>
         </Col>
       </Row>
     </SidebarNav>
