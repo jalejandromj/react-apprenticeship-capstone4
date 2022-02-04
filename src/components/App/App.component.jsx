@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import GeneralContextProvider from '../../state/GeneralContext';
+import HomePage from '../../pages/Home';
 import Layout from '../Layout';
 import './App.css';
 
@@ -12,7 +13,7 @@ function App() {
       <GeneralContextProvider>
         <Layout>
           <Routes>
-            <Route exact path="/" element={<div><h1>Home</h1></div>}></Route>
+            <Route exact path="/home" element={<HomePage />}></Route>
           </Routes>
         </Layout>
       </GeneralContextProvider>

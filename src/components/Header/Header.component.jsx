@@ -3,18 +3,13 @@ import React, { useEffect } from 'react';
 
 import { useGeneralContext } from '../../state/GeneralContext';
 import Col from '../Col';
+import Input from '../Input';
 import Row from '../Row';
 import { ReactComponent as MenuSVG } from '../../assets/svg/menu.svg';
 import { HeaderNav } from './Header.styles';
 
 function Header() {
-  //let navigate = useNavigate();
-  const { displaySidebar, setDisplaySidebar } = useGeneralContext();
-  console.log(displaySidebar);
-  /*const handleLogout = () => {
-    sessionStorage.removeItem('Auth Token');
-    navigate('/login')
-  }*/
+  const { displaySidebar } = useGeneralContext();
 
   useEffect(() => {
     
@@ -24,10 +19,10 @@ function Header() {
     <HeaderNav id="header">
       <Row>
         <Col md={2} lg={2} style={{ alignItems: 'start', justifyContent: 'center', paddingLeft: "2%" }}>
-          <span>logo</span>
+          <span>WizeCommerce</span>
         </Col>
         <Col md={6} lg={8} style={{ justifyContent: 'center' }}>
-          <span>Search</span>
+          <Input name="search" noLabel placeholder="Search"/>
         </Col>
         <Col
           md={2} lg={1}
@@ -36,7 +31,7 @@ function Header() {
           <span>Cart</span>
         </Col>
         <Col md={2} lg={1} style={{ alignItems: 'end', justifyContent: 'center' }}>
-          <figure onClick={() => setDisplaySidebar(!displaySidebar)} style={{cursor: "pointer"}}><MenuSVG style={{fill: "white", height: "100%"}}/></figure>
+          <figure onClick={() => console.log(!displaySidebar)} style={{cursor: "pointer"}}><MenuSVG style={{fill: "white", height: "100%"}}/></figure>
         </Col>
       </Row>
     </HeaderNav>

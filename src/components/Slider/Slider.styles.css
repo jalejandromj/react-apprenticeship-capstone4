@@ -1,0 +1,6 @@
+.carousel.slide,
+.carousel-inner,
+.active.carousel-item,
+.carousel-item {
+  height: 100%;
+}

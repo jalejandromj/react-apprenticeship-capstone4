@@ -25,13 +25,13 @@ const LayoutDiv = styled.div`
 const MainContainer = styled.div`
   display: flex;
   grid-area: container;
-  background-color: rgb(var(--discreet-white));
+  background-color: rgb(var(--beige));
   height: 100%;
   width: 100%;
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  padding: 3% 2%;
+  /*padding: 3% 2%;*/
   overflow-y: scroll;
 `;
 
