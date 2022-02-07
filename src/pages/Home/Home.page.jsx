@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 import Carousel from '../../components/Carousel';
 import Col from "../../components/Col";
+import Footer from "../../components/Footer";
 import MediaCard from '../../components/MediaCard/';
 import Row from "../../components/Row";
 import Slider from '../../components/Slider';
@@ -58,7 +59,7 @@ function HomePage() {
   }, []);
 
   return (
-    <section className="home-page">
+    <section className="content home-page">
       <HomeSection>
         <Slider items={featuredBanners.results}/>
       </HomeSection>
@@ -86,6 +87,7 @@ function HomePage() {
           </CategoriesContainer>
         </Row>
       </section>
+      <Footer />
     </section>
   );
 }

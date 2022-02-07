@@ -20,7 +20,7 @@ function Layout({ children }) {
       ) : null}
 
       <MainContainer id="main-container">
-        {children}
+          {children}
       </MainContainer>
     </LayoutDiv>
   );

@@ -10,11 +10,6 @@
 
 .swiper-slide {
   height: 100%;
-
-  /* Center slide text vertically */
-  display: box;
-  display: flexbox;
-  display: flex;
   display: flex;
 }
 

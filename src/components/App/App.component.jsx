@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Navigate, Routes, Route } from 'react-router-dom';
 
 import GeneralContextProvider from '../../state/GeneralContext';
 import HomePage from '../../pages/Home';
@@ -13,6 +13,7 @@ function App() {
       <GeneralContextProvider>
         <Layout>
           <Routes>
+            <Route exact path="/" element={<Navigate to="/home" />}></Route>
             <Route exact path="/home" element={<HomePage />}></Route>
           </Routes>
         </Layout>

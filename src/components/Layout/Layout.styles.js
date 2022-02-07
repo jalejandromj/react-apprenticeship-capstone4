@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const LayoutDiv = styled.div`
   display: grid;
-  grid-template-rows: 9% 92%;
+  grid-template-rows: 9% 91%;
   -ms-grid-rows: 9% 92%;
   width: 100vw;
   height: 100vh;
@@ -28,9 +28,9 @@ const MainContainer = styled.div`
   background-color: rgb(var(--beige));
   height: 100%;
   width: 100%;
-  align-items: center;
+  /*align-items: center;
   flex-direction: column;
-  justify-content: center;
+  justify-content: center;*/
   /*padding: 3% 2%;*/
   overflow-y: scroll;
 `;
