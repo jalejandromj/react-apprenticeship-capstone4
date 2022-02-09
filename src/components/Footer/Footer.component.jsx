@@ -16,7 +16,7 @@ function Footer() {
     <FooterComponent>
       <Row>
         <Col md={6}>
-          <span>Ecommerce created during Wizeline’s Academy React Bootcamp</span>
+          <span style={{color: "rgb(var(--discreet-white))"}}>Ecommerce created during Wizeline’s Academy React Bootcamp</span>
         </Col>
         <Col md={3}>
         

@@ -10,6 +10,9 @@ const ColDiv = styled.div`
   flex-basis: 100%;
   flex: 1 0 100%;
   padding: 10px 10px;
+  &.upper-border {
+    border-top: 1px solid rgb(var(--strong-gray));
+  }
 
   /* HD STYLES MD */
   @media screen and (min-width: ${MEDIA_QUERIES.md}) and (max-width: calc(${MEDIA_QUERIES.lg} - 1px)) {

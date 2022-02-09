@@ -1,6 +1,11 @@
 .my-swiper {
   height: 100%;
   width: 100%;
+  cursor: grab;
+}
+
+.my-swiper:active {
+  cursor: grabbing;
 }
 
 .swiper {

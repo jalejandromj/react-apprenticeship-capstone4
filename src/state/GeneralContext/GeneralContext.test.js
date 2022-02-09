@@ -9,11 +9,11 @@ it('handles context variables correctly', async () => {
   const wrapper = ({ children }) => <GeneralContextProvider>{children}</GeneralContextProvider>
   const { result } = renderHook(() => useGeneralContext(), { wrapper })
 
-  expect(result.current.displaySidebar).toBe(true); //Test displaySidebar variable
+  expect(result.current.displaySidebar).toBe(false); //Test displaySidebar variable
 
   // Test set variables functons...
   act(() => {
-    result.current.setDisplaySidebar(false);
+    result.current.setDisplaySidebar(true);
   });
-  expect(result.current.displaySidebar).toBe(false);
+  expect(result.current.displaySidebar).toBe(true);
 });

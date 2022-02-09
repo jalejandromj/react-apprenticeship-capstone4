@@ -7,7 +7,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import GeneralContextProvider from '../../state/GeneralContext';
 import { useGeneralContext } from '../../state/GeneralContext';
-import Layout from './Layout.jsx';
+import Layout from './Layout.component.jsx';
 
 const RenderHtml = () => {
   return(
@@ -32,17 +32,4 @@ it("renders children", () => {
   
   const child = screen.getByText(/Test children/i);
   expect(child).toBeInTheDocument();
-});
-
-it('displays sidebar', async () => {
-  const wrapper = ({ children, displaySidebar }) => <GeneralContextProvider displaySidebar={renderHook}>{children}</GeneralContextProvider>
-  const { result, rerender } = renderHook(() => useGeneralContext(), { wrapper, initialProps: {displaySidebar: true} })
-
-  render(
-    <RenderHtml/>
-  );
-
-  const sidebarBtn = screen.getByText(/My notes/i);
-
-  expect(sidebarBtn).toBeInTheDocument(); //Initially, displaySidebar is set to TRUE
 });
