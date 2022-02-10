@@ -13,6 +13,9 @@ const ColDiv = styled.div`
   &.upper-border {
     border-top: 1px solid rgb(var(--strong-gray));
   }
+  &.left-border {
+    border-left: 1px solid rgb(var(--strong-gray));
+  }
 
   /* HD STYLES MD */
   @media screen and (min-width: ${MEDIA_QUERIES.md}) and (max-width: calc(${MEDIA_QUERIES.lg} - 1px)) {

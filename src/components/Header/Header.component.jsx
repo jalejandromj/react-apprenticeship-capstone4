@@ -9,7 +9,7 @@ import { ReactComponent as MenuSVG } from '../../assets/svg/menu.svg';
 import { ReactComponent as CartSVG } from '../../assets/svg/cart.svg';
 import { HeaderNav } from './Header.styles';
 
-function Header() {
+function Header({conditionalRender}) {
   const { displaySidebar } = useGeneralContext();
 
   useEffect(() => {
@@ -20,7 +20,7 @@ function Header() {
     <HeaderNav id="header">
       <Row>
         <Col md={2} lg={2} style={{ alignItems: 'start', justifyContent: 'center', paddingLeft: "2%" }}>
-          <span style={{color: "rgb(var(--discreet-white))"}}>WizeCommerce</span>
+          <span onClick={() => conditionalRender('home')} style={{cursor: "pointer", color: "rgb(var(--discreet-white))"}}>WizeCommerce</span>
         </Col>
         <Col md={6} lg={8} style={{ justifyContent: 'center' }}>
           <Input name="search" noLabel placeholder="Search"/>

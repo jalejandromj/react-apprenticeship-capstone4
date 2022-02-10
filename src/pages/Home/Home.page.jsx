@@ -13,7 +13,7 @@ import productCategories from '../../utils/product-categories.json';
 
 
 
-function HomePage() {
+function HomePage({conditionalRender}) {
 
   const RenderCategories = () => {
     const renderedCategories = productCategories.results.map((cat, index) => {
@@ -45,8 +45,13 @@ function HomePage() {
       </section>
       <section id="products-section" style={{padding: "5% 2% 5% 2%"}}>
         <Row style={{height: "12%"}}>
-          <Col md={12} style={{overflowX: "hidden"}}>
+          <Col md={4} style={{overflowX: "hidden"}}>
             <h2>Shop Our Favourites</h2>
+          </Col>
+          <Col md={4} style={{overflowX: "hidden"}} centerX>
+            <a href="#" onClick={() => conditionalRender('productlist')}>
+              <span style={{color: "rgb(var(--grayish-black))"}}>View all</span>
+            </a>
           </Col>
         </Row>
         <Row style={{height: "88%"}}>
