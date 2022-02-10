@@ -1,0 +1,143 @@
+@font-face {
+  font-family: Ashbury;
+  src: local("Ashbury"), url("./assets/fonts/ashbury-light.otf") format("opentype");
+}
+
+@font-face {
+  font-family: Graphik;
+  src: local("Graphik"), url("./assets/fonts/graphik-regular.otf") format("opentype");
+}
+
+body > iframe[style*="2147483647"]:not([id="webpack-dev-server-client-overlay"]) {
+  display: none;
+}
+
+html {
+  font-size: 1.125rem;
+  line-height: 1.6;
+  font-weight: 400;
+  font-family: sans-serif;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  -webkit-tap-highlight-color: rgba(0 0 0 0%);
+}
+
+:root {
+  --wine: 140 0 52;
+  --discreet-white: 255 245 247;
+  --dark-blue: 47 70 102;
+  --grayish-black: 49 57 66;
+  --pale-green: 86 105 98;
+  --light-beige: 225 223 219;
+  --strong-gray: 141 144 146;
+  --light-purple: 98 50 104;
+  --dark-purple: 68 63 109;
+  --indigo-blue: 18, 166, 154;
+  --beige: 237 236 233;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  font-family:
+    Graphik,
+    sans-serif,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    "Fira Sans",
+    "Droid Sans",
+    "Helvetica Neue";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family:
+    source-code-pro,
+    Menlo,
+    Monaco,
+    Consolas,
+    "Courier New",
+    monospace;
+}
+
+section {
+  height: 100%;
+  width: 100%;
+}
+
+figure {
+  margin: 0 !important;
+}
+
+h1,
+h2,
+h3 {
+  font-family: Ashbury, sans-serif;
+  margin-top: -0.095em;
+  margin-bottom: 0.095em;
+  padding-bottom: 1.75rem;
+  max-width: 40em;
+}
+
+h2,
+h3 {
+  font-weight: 400;
+}
+
+h4,
+h5 {
+  font-family: Graphik, sans-serif;
+}
+
+section h1 {
+  font-size: 2rem;
+  font-weight: 500;
+}
+
+section h2 {
+  font-size: 1.8rem;
+}
+
+section h3 {
+  font-size: 1.625rem;
+}
+
+section h4 {
+  font-size: 1.4rem;
+}
+
+section h5 {
+  font-size: 0.875rem;
+}
+
+span {
+  color: rgb(var(--strong-gray));
+  font-family: Graphik, sans-serif;
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.5rem;
+}
+
+p {
+  font-family: Ashbury, sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5rem;
+}
+
+ul.list-none {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}

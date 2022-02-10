@@ -3,20 +3,31 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@fullpage/react-fullpage": "^0.1.19",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
-    "eslint": "^7.32.0",
+    "bootstrap": "^5.1.3",
     "react": "^17.0.2",
+    "react-bootstrap": "^2.1.2",
     "react-dom": "^17.0.2",
+    "react-router-dom": "^6.2.1",
     "react-scripts": "^4.0.3",
+    "styled-components": "^5.3.3",
+    "swiper": "^6.8.4",
     "web-vitals": "^1.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "eslint ./src --ext .js,.jsx",
+    "lint:fix": "eslint ./src --ext .js,.jsx --fix",
+    "stylelint": "stylelint src/*.css src/**/*.css",
+    "stylelint:fix": "stylelint src/*.css src/**/*.css --fix",
+    "test": "react-scripts test --coverage .",
+    "verify": "npm run lint && npm run stylelint",
+    "prepare": "husky install"
   },
   "eslintConfig": {
     "extends": [
@@ -77,5 +88,13 @@
       "last 1 safari version"
     ]
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "@testing-library/react-hooks": "^7.0.2",
+    "eslint": "^7.32.0",
+    "eslint-plugin-react": "^7.28.0",
+    "husky": "^7.0.4",
+    "prettier": "2.5.1",
+    "stylelint": "^14.3.0",
+    "stylelint-config-standard": "^24.0.0"
+  }
 }
