@@ -76,6 +76,10 @@ section {
   width: 100%;
 }
 
+section a {
+  text-decoration: none;
+}
+
 figure {
   margin: 0 !important;
 }
