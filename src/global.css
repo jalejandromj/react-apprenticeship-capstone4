@@ -77,8 +77,9 @@ section {
   overflow: scroll;
 }
 
+a,
 section a {
-  text-decoration: none;
+  text-decoration: none !important;
 }
 
 figure {

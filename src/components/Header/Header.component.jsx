@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-//import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import { useGeneralContext } from '../../state/GeneralContext';
 import Col from '../Col';
@@ -9,7 +9,7 @@ import { ReactComponent as MenuSVG } from '../../assets/svg/menu.svg';
 import { ReactComponent as CartSVG } from '../../assets/svg/cart.svg';
 import { HeaderNav } from './Header.styles';
 
-function Header({conditionalRender}) {
+function Header() {
   const { displaySidebar } = useGeneralContext();
 
   useEffect(() => {
@@ -20,7 +20,9 @@ function Header({conditionalRender}) {
     <HeaderNav id="header">
       <Row>
         <Col md={2} lg={2} style={{ alignItems: 'start', justifyContent: 'center', paddingLeft: "2%" }}>
-          <span onClick={() => conditionalRender('home')} style={{cursor: "pointer", color: "rgb(var(--discreet-white))"}}>WizeCommerce</span>
+          <Link to="/home">
+            <span style={{cursor: "pointer", color: "rgb(var(--discreet-white))"}}>WizeCommerce</span>
+          </Link>
         </Col>
         <Col md={6} lg={8} style={{ justifyContent: 'center' }}>
           <Input name="search" noLabel placeholder="Search"/>

@@ -5,7 +5,7 @@ import Header from '../Header';
 import Sidebar from '../Sidebar';
 import { LayoutDiv, MainContainer } from './Layout.styles';
 
-function Layout({ conditionalRender, children }) {
+function Layout({ children }) {
   const { displaySidebar } = useGeneralContext();
 
   return (
@@ -13,7 +13,7 @@ function Layout({ conditionalRender, children }) {
       id="layout"
       className={displaySidebar ? `sidebar-display` : `sidebar-hidden`}
     >
-      <Header conditionalRender={conditionalRender}/>
+      <Header />
 
       {displaySidebar ? (
         <Sidebar/>

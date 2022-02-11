@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { Link } from "react-router-dom";
 
 import Carousel from '../../components/Carousel';
 import Col from "../../components/Col";
@@ -13,7 +14,7 @@ import productCategories from '../../utils/product-categories.json';
 
 
 
-function HomePage({conditionalRender}) {
+function HomePage() {
 
   const RenderCategories = () => {
     const renderedCategories = productCategories.results.map((cat, index) => {
@@ -49,9 +50,9 @@ function HomePage({conditionalRender}) {
             <h2>Shop Our Favourites</h2>
           </Col>
           <Col md={4} style={{overflowX: "hidden"}} centerX>
-            <a href="#" onClick={() => conditionalRender('productlist')}>
+            <Link to="/products">
               <span style={{color: "rgb(var(--grayish-black))"}}>View all</span>
-            </a>
+            </Link>
           </Col>
         </Row>
         <Row style={{height: "88%"}}>
