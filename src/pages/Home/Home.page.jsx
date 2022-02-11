@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { useFeaturedBanners } from '../../utils/hooks/useFeaturedBanners';
 import { useFeaturedProducts } from '../../utils/hooks/useFeaturedProducts';
@@ -13,6 +13,7 @@ import Slider from '../../components/Slider';
 import { CategoriesContainer } from './Home.page.styles';
 
 function HomePage() {
+  let navigate = useNavigate();
   const [featuredBanners, setFeaturedBanners] = useState({});
   const [featuredProducts, setFeaturedProducts] = useState({});
   const [productCategories, setProductcategories] = useState({});
@@ -25,12 +26,13 @@ function HomePage() {
       let isMini = false;
       if(index > 0)
         isMini = true;
-
+      
       return(
         <MediaCard key={`${cat.data.name}_${index}`}
                    description=""
                    media={cat.data.main_image.url} 
                    mini={isMini}
+                   onClick={() => navigate(`/products?category=${cat.slugs[0]}`)}
                    style={{gridArea: `panel${index}`}}
                    title={cat.data.name} />
       )
@@ -83,7 +85,7 @@ function HomePage() {
         </Row>
         <Row style={{height: "88%"}}>
           <CategoriesContainer>
-          {Object.keys(productCategories).length !== 0 && <RenderCategories />}
+            {Object.keys(productCategories).length !== 0 && <RenderCategories />}
           </CategoriesContainer>
         </Row>
       </section>

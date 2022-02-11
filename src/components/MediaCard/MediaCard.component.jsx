@@ -1,8 +1,11 @@
 import React from 'react';
 
+import Button from '../../components/Button';
+import Col from "../../components/Col";
+import Row from "../../components/Row";
 import { Figure, Image, Li, Ul } from './MediaCard.styles';
 
-function MediaCard({ description, headerSize, isVideo, media, mini, onClick, style, title }) {
+function MediaCard({ description, headerSize, isVideo, media, mini, onClick, showButton, style, title }) {
   const RenderMedia = () => {
     if(isVideo === "video"){
       return (
@@ -28,14 +31,14 @@ function MediaCard({ description, headerSize, isVideo, media, mini, onClick, sty
 
   return (
     <Ul
-      onClick={onClick}
       mini={mini}
+      showButton={showButton}
       style={style}
     >
-      <Li style={{marginBottom: "10px"}}>
+      <Li onClick={onClick} style={{marginBottom: "10px"}}>
         <RenderMedia />
       </Li>
-      <Li className="videoTitle">
+      <Li className="videoTitle" onClick={onClick}>
         {headerSize === "small" ?
           <h5 className="">
             {title}
@@ -47,7 +50,16 @@ function MediaCard({ description, headerSize, isVideo, media, mini, onClick, sty
         }
       </Li>
       <Li className="videoDescr">
-        <span className="">{description}</span>
+        <Row style={{padding: 0}}>
+          <Col md={5} style={{padding: 0}} centerY>
+            <span className="">{description}</span>
+          </Col>
+          {showButton &&
+            <Col md={7} style={{alignItems: "end", padding: 0}}>
+              <Button className="selected"><span>{showButton}</span></Button>
+            </Col>
+          }
+        </Row>
       </Li>
     </Ul>
   );

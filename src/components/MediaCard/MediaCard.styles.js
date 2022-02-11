@@ -4,10 +4,7 @@ const Ul = styled.ul`
   display: grid;
   display: -ms-grid;
   grid-row-gap: 0px;
-
-  grid-template-rows: 87% 8% 5%;
-  -ms-grid-rows: auto 10% 23.5% 6.5%;
-
+  ${props => props.showButton ? "grid-template-rows: 83% 6% 11%;" : "grid-template-rows: 87% 8% 5%;"}
   grid-template-columns: 100%;
   -ms-grid-columns: 100%;
 
@@ -43,6 +40,7 @@ const Figure = styled.figure`
   width: 100%;
   height: 100%;
   background-color: #0000001a;
+  cursor: pointer;
   
   &:after{
     top: 0;

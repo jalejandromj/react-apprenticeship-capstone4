@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from "react-router-dom";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import 'swiper/swiper-bundle.min.css'
@@ -11,7 +12,8 @@ import Row from "../../components/Row";
 import './Carousel.styles.css';
 
 function Carousel(props) {
-
+  let navigate = useNavigate();
+  
   return (
     <>
       <Swiper
@@ -24,11 +26,12 @@ function Carousel(props) {
               <SwiperSlide key={`slide_${index}`} virtualIndex={index}>
                 <Row>
                   <Col md={12}>
-                  <MediaCard
-                            description={`${capitalizeFirstLetter(item.data.category.slug)} $${item.data.price}`}
-                            headerSize="small"
-                            media={item.data.mainimage.url}
-                            title={item.data.name} />
+                  <MediaCard description={`[${capitalizeFirstLetter(item.data.category.slug)}] $${item.data.price}`}
+                             headerSize="small"
+                             media={item.data.mainimage.url}
+                             onClick={() => navigate(`/product/${item.id}`)}
+                             showButton="Add to cart"
+                             title={item.data.name} />
                   </Col>
                 </Row>
               </SwiperSlide>

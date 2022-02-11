@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useSearchParams } from "react-router-dom";
 
 import Button from "../../components/Button";
 import Col from "../../components/Col";
@@ -11,7 +12,10 @@ import products from "../../utils/products.json";
 import productCategories from '../../utils/product-categories.json';
 
 function ProductListPage() {
-  const [filterArray, setFilterArray] = useState([]);
+  const [searchParams] = useSearchParams();
+  const queryCategory = searchParams.get("category");
+  // If I receive any filter parameter on url, use it, if not, empty filter...
+  const [filterArray, setFilterArray] = useState(queryCategory ? [queryCategory] : []);
   const [displayedProd] = useState(products);
 
   const RenderCategories = () => {
