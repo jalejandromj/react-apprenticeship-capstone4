@@ -5,7 +5,7 @@ import Col from "../../components/Col";
 import MediaCard from '../../components/MediaCard/';
 import Row from "../../components/Row";
 import Pagination from "../../components/Pagination";
-import { ProductsLayout, ProductsGrid } from './ProductList.styles';
+import { CardColumn, ProductsLayout, ProductsGrid } from './ProductList.styles';
 import { capitalizeFirstLetter } from "../../utils/utils.js";
 import products from "../../utils/products.json";
 import productCategories from '../../utils/product-categories.json';
@@ -33,12 +33,12 @@ function ProductListPage() {
     const renderedProd = displayedProd.results.map((item, index) => {
       if(filterArray.indexOf(item.data.category.slug) !== -1 || filterArray.length === 0){// Used to show ONLY the FILTERED prod
         return(
-          <Col key={`slide_${index}`} md={3} style={{height: "600px"}}>
+          <CardColumn key={`slide_${index}`} md={4} lg={3}>
             <MediaCard description={`${capitalizeFirstLetter(item.data.category.slug)} $${item.data.price}`}
                       headerSize="small"
                       media={item.data.mainimage.url}
                       title={item.data.name} />
-          </Col>
+          </CardColumn>
         )
       }
     })
@@ -81,8 +81,8 @@ function ProductListPage() {
                   <RenderProducts />
                 </Row>
                 <Row>
-                  <Col md={9}/>
-                  <Col md={3} style={{alignItems: "end"}}>
+                  <Col md={8} xl={9}/>
+                  <Col md={4} xl={3} style={{alignItems: "end"}}>
                     <Pagination />
                   </Col>
                 </Row>
