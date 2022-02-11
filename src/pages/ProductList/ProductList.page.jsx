@@ -81,8 +81,8 @@ function ProductListPage() {
                   <RenderProducts />
                 </Row>
                 <Row>
-                  <Col md={8} xl={9}/>
-                  <Col md={4} xl={3} style={{alignItems: "end"}}>
+                  <Col md={7} xl={9}/>
+                  <Col md={5} xl={3} style={{alignItems: "end"}}>
                     <Pagination />
                   </Col>
                 </Row>

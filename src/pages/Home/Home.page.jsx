@@ -1,6 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
 
+import { useFeaturedBanners } from '../../utils/hooks/useFeaturedBanners';
+import { useFeaturedProducts } from '../../utils/hooks/useFeaturedProducts';
+import { useProductCategories } from '../../utils/hooks/useProductCategories';
 import Carousel from '../../components/Carousel';
 import Col from "../../components/Col";
 import Footer from "../../components/Footer";
@@ -8,13 +11,14 @@ import MediaCard from '../../components/MediaCard/';
 import Row from "../../components/Row";
 import Slider from '../../components/Slider';
 import { CategoriesContainer } from './Home.page.styles';
-import featuredBanners  from '../../utils/featured-banners.json';
-import featuredProducts  from '../../utils/featured-products.json';
-import productCategories from '../../utils/product-categories.json';
-
-
 
 function HomePage() {
+  const [featuredBanners, setFeaturedBanners] = useState({});
+  const [featuredProducts, setFeaturedProducts] = useState({});
+  const [productCategories, setProductcategories] = useState({});
+  const featBannersResp = useFeaturedBanners();
+  const featProdResp = useFeaturedProducts();
+  const productCatResp = useProductCategories();
 
   const RenderCategories = () => {
     const renderedCategories = productCategories.results.map((cat, index) => {
@@ -36,13 +40,23 @@ function HomePage() {
   }
 
   useEffect(() => {
+    if (featBannersResp) {
+      setFeaturedBanners(featBannersResp.data);
+    }
 
-  }, []);
+    if (featProdResp) {
+      setFeaturedProducts(featProdResp.data);
+    }
+
+    if(productCatResp) {
+      setProductcategories(productCatResp.data);
+    }
+  }, [featBannersResp, featProdResp, productCatResp]);
 
   return (
     <section className="content home-page">
       <section id="banner-section">
-        <Slider items={featuredBanners.results}/>
+        {Object.keys(featuredBanners).length !== 0 && <Slider items={featuredBanners.results}/>}
       </section>
       <section id="products-section" style={{padding: "5% 2% 5% 2%"}}>
         <Row style={{height: "12%"}}>
@@ -57,7 +71,7 @@ function HomePage() {
         </Row>
         <Row style={{height: "88%"}}>
           <Col md={12} style={{width: "100%"}}>
-            <Carousel items={featuredProducts.results}/>
+            {Object.keys(featuredProducts).length !== 0 && <Carousel items={featuredProducts.results}/>}
           </Col>
         </Row>
       </section>
@@ -69,7 +83,7 @@ function HomePage() {
         </Row>
         <Row style={{height: "88%"}}>
           <CategoriesContainer>
-            <RenderCategories />
+          {Object.keys(productCategories).length !== 0 && <RenderCategories />}
           </CategoriesContainer>
         </Row>
       </section>
