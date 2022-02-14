@@ -18,7 +18,7 @@ function HomePage() {
   const [featuredProducts, setFeaturedProducts] = useState({});
   const [productCategories, setProductcategories] = useState({});
   const featBannersResp = useFeaturedBanners();
-  const featProdResp = useFeaturedProducts();
+  const featProdResp = useFeaturedProducts(16);
   const productCatResp = useProductCategories();
 
   const RenderCategories = () => {

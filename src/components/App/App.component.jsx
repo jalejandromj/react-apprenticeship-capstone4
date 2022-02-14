@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import GeneralContextProvider from '../../state/GeneralContext';
 import HomePage from '../../pages/Home';
+import ProductDetailPage from '../../pages/ProductDetail';
 import ProductListPage from '../../pages/ProductList';
 import Layout from '../Layout';
 import './App.css';
@@ -20,7 +21,8 @@ function App() {
           <Routes>
             <Route exact path="/" element={<HomePage />} />
             <Route exact path="/home" element={<HomePage />} />
-            <Route exact path="/products" element={<ProductListPage />} />
+            <Route path="/products" element={<ProductListPage />} />
+            <Route path="/product/:productId" element={<ProductDetailPage />} />
           </Routes>
         </Layout>
       </GeneralContextProvider>

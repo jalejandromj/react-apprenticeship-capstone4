@@ -51,12 +51,12 @@ function MediaCard({ description, headerSize, isVideo, media, mini, onClick, sho
       </Li>
       <Li className="videoDescr">
         <Row style={{padding: 0}}>
-          <Col md={5} style={{padding: 0}} centerY>
+          <Col md={6} style={{padding: 0}} centerY>
             <span className="">{description}</span>
           </Col>
           {showButton &&
-            <Col md={7} style={{alignItems: "end", padding: 0}}>
-              <Button className="selected"><span>{showButton}</span></Button>
+            <Col md={6} style={{alignItems: "end", padding: 0}}>
+              <Button className="selected" style={{padding: "8px 10px"}}><span>{showButton}</span></Button>
             </Col>
           }
         </Row>
