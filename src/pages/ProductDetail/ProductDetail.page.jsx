@@ -4,10 +4,11 @@ import { useParams } from 'react-router-dom';
 import { useProductDetail } from '../../utils/hooks/useProductDetail';
 import Badge from '../../components/Badge';
 import Button from "../../components/Button";
+import Carousel from '../../components/Carousel';
 import Col from "../../components/Col";
 import Input from '../../components/Input';
 import Row from "../../components/Row";
-import { BuyPanel, SpecsList, TagsList } from './ProductDetail.styles';
+import { BuyPanel, CarouselPanel, Figure, Image, SpecsList, TagsList } from './ProductDetail.styles';
 import { capitalizeFirstLetter } from "../../utils/utils.js";
 
 function ProductDetailPage() {
@@ -15,6 +16,18 @@ function ProductDetailPage() {
   const [productDetail, setProductDetail] = useState(null);
   const { productId } = useParams();
   const productDetailResp = useProductDetail(productId);
+
+  const renderSlides = () => productDetail[0].data.images.map((item, index) => {
+    return(
+      <Row key={`row-${index}`}>
+        <Col md={12}>
+          <Figure>
+            <Image src={item.image.url}/>
+          </Figure>
+        </Col>
+      </Row>
+    )
+  });
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -30,19 +43,19 @@ function ProductDetailPage() {
     if (Object.keys(productDetailResp.data).length !== 0)
       setProductDetail(productDetailResp.data.results);
   }, [productDetailResp]);
-  console.log(productDetail);
+  
   return (
     <section className="content productdetail-page" style={{padding: "0% 2% 0% 2%"}}>
       <section id="main-product-detail">
         <Row> 
           <Col md={12} style={{paddingTop: "5%"}}>
-            <h1 style={{paddingBottom: "0"}}>{productDetail && productDetail[0].data.name}</h1>
+            <h1 style={{paddingBottom: "0.3em"}}>{productDetail && productDetail[0].data.name}</h1>
           </Col>
         </Row>
         <Row style={{height: "80%"}}> 
-          <Col md={7}>
-            <h1 style={{paddingBottom: "0"}}>Carousel</h1>
-          </Col>
+          <CarouselPanel md={6} style={{width: "50%"}}>
+            {productDetail && <Carousel renderSlidesFunct={renderSlides()} slidesPerView={1} />}
+          </CarouselPanel>
           <BuyPanel className="left-border" md={6} >
             <Row>
               <Col md={4} lg={3}>

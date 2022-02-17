@@ -6,12 +6,12 @@ import 'swiper/swiper.min.css'
 
 import './Carousel.styles.css';
 
-function Carousel({ renderSlidesFunct }) {
+function Carousel({ renderSlidesFunct, slidesPerView }) {
 
   return (
     <>
       <Swiper
-        slidesPerView={5}
+        slidesPerView={slidesPerView}
         spaceBetween={20}
         className="my-swiper"
       >
