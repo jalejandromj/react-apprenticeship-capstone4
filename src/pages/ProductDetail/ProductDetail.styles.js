@@ -10,4 +10,18 @@ const BuyPanel = styled(Col)`
   background-color: rgb(var(--light-beige));
 `;
 
-export { BuyPanel };
+const SpecsList = styled.ul`
+  display: grid;
+  ${props => props.elemNumb ? `grid-template-rows: repeat(${props.elemNumb}, max-content);` : "grid-template-rows: auto;"}
+  grid-row-gap: 0px;
+  grid-template-columns: 100%;
+`;
+
+const TagsList = styled.ul`
+  display: grid;
+  ${props => props.elemNumb ? `grid-template-columns: repeat(${props.elemNumb}, max-content);` : "grid-template-columns: auto;"}
+  grid-column-gap: 10px;
+  grid-template-rows: 100%;
+`;
+
+export { BuyPanel, SpecsList, TagsList };
