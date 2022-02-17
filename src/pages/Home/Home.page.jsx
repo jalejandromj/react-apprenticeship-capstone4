@@ -11,6 +11,7 @@ import MediaCard from '../../components/MediaCard/';
 import Row from "../../components/Row";
 import Slider from '../../components/Slider';
 import { CategoriesContainer } from './Home.page.styles';
+import { capitalizeFirstLetter } from '../../utils/utils.js';
 
 function HomePage() {
   let navigate = useNavigate();
@@ -21,25 +22,36 @@ function HomePage() {
   const featProdResp = useFeaturedProducts(16);
   const productCatResp = useProductCategories();
 
-  const RenderCategories = () => {
-    const renderedCategories = productCategories.results.map((cat, index) => {
-      let isMini = false;
-      if(index > 0)
-        isMini = true;
-      
-      return(
-        <MediaCard key={`${cat.data.name}_${index}`}
-                   description=""
-                   media={cat.data.main_image.url} 
-                   mini={isMini}
-                   onClick={() => navigate(`/products?category=${cat.slugs[0]}`)}
-                   style={{gridArea: `panel${index}`}}
-                   title={cat.data.name} />
-      )
-    })
+  const renderSlides = () => featuredProducts.results.map((item, index) => {
+    return(
+      <Row key={`row-${index}`}>
+        <Col md={12}>
+        <MediaCard description={`[${capitalizeFirstLetter(item.data.category.slug)}] $${item.data.price}`}
+                    headerSize="small"
+                    media={item.data.mainimage.url}
+                    onClick={() => navigate(`/product/${item.id}`)}
+                    showButton="Add to cart"
+                    title={item.data.name} />
+        </Col>
+      </Row>
+    )
+  });
 
-    return renderedCategories;
-  }
+  const RenderCategories = () => productCategories.results.map((cat, index) => {
+    let isMini = false;
+    if(index > 0)
+      isMini = true;
+    
+    return(
+      <MediaCard key={`${cat.data.name}_${index}`}
+                  description=""
+                  media={cat.data.main_image.url} 
+                  mini={isMini}
+                  onClick={() => navigate(`/products?category=${cat.slugs[0]}`)}
+                  style={{gridArea: `panel${index}`}}
+                  title={cat.data.name} />
+    )
+  })
 
   useEffect(() => {
     if (featBannersResp) {
@@ -73,7 +85,7 @@ function HomePage() {
         </Row>
         <Row style={{height: "88%"}}>
           <Col md={12} style={{width: "100%"}}>
-            {Object.keys(featuredProducts).length !== 0 && <Carousel items={featuredProducts.results}/>}
+            {Object.keys(featuredProducts).length !== 0 && <Carousel renderSlidesFunct={renderSlides()} slidesPerView={5} />}
           </Col>
         </Row>
       </section>
