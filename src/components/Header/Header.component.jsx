@@ -1,7 +1,8 @@
-import React, { useEffect } from 'react';
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import { Link, useNavigate } from "react-router-dom";
 
 import { useGeneralContext } from '../../state/GeneralContext';
+import Button from '../Button';
 import Col from '../Col';
 import Input from '../Input';
 import Row from '../Row';
@@ -10,7 +11,16 @@ import { ReactComponent as CartSVG } from '../../assets/svg/cart.svg';
 import { HeaderNav } from './Header.styles';
 
 function Header() {
-  const { displaySidebar } = useGeneralContext();
+  let navigate = useNavigate();
+  const { displaySidebar, setSearch } = useGeneralContext();
+  const [searchInput, setSearchInput] = useState('');
+
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    setSearch(searchInput);
+    navigate(`/search/?q=${searchInput}`)
+  }
 
   useEffect(() => {
     
@@ -24,8 +34,17 @@ function Header() {
             <span style={{cursor: "pointer", color: "rgb(var(--discreet-white))"}}>WizeCommerce</span>
           </Link>
         </Col>
-        <Col md={6} lg={8} style={{ justifyContent: 'center' }}>
-          <Input name="search" noLabel placeholder="Search"/>
+        <Col md={6} lg={8} centerY>
+          <form onSubmit={(e) => handleSubmit(e)}>
+            <Row>
+              <Col md={9} lg={10} style={{ justifyContent: 'center' }}>
+                <Input name="search" noLabel onChange={(e) => setSearchInput(e.target.value)} placeholder="Search" required value={searchInput}/>
+              </Col>
+              <Col md={3} lg={2} style={{ alignItems: 'start' }} centerY>
+                <Button type="button">Search</Button>
+              </Col>
+            </Row>
+          </form>
         </Col>
         <Col
           md={2} lg={1}
