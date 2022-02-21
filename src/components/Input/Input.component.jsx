@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 
 import { InputElement } from './Input.styles';
 
-function Input({defaultValue, label, name, noLabel, onChange, placeholder, required, type, theme, value }) {
+function Input({defaultValue, label, min, name, noLabel, onChange, placeholder, required, type, theme, value }) {
 
   useEffect(() => {
 
@@ -13,6 +13,7 @@ function Input({defaultValue, label, name, noLabel, onChange, placeholder, requi
       {!noLabel && <label htmlFor={label.toLowerCase()} style={{color: "rgb(var(--indigo-blue))"}}><span>{label}</span></label>}
       <InputElement aria-label={label}
                     defaultValue={defaultValue ? defaultValue : undefined}
+                    min={min !== undefined ? min : null}
                     name={name.toLowerCase()}
                     onChange={onChange}
                     placeholder={placeholder ? placeholder : null} 

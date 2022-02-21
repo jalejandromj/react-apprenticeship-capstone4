@@ -31,25 +31,32 @@ function ProductDetailPage() {
     )
   });
 
-  const addToCartLogic = (cart) => {
+  const addToCart = (cart) => {
     let desiredProdQty = cart[productId] ? cart[productId].qty+parseInt(qty) : parseInt(qty);
 
     setCart(prevState => ({
       ...prevState,
-      [productId]: {each: productDetail[0].data.price, qty: desiredProdQty},
+      [productId]: {
+        eachPrice: productDetail[0].data.price, 
+        img: productDetail[0].data.mainimage.url, 
+        name: productDetail[0].data.name, 
+        qty: desiredProdQty,
+        stock: productDetail[0].data.stock,
+      },
       totalQty: prevState.totalQty+parseInt(qty)
     }));
   }
 
   function handleSubmit(e) {
     e.preventDefault();
+    
     let stock = productDetail ? productDetail[0].data.stock : stock = null;
 
     if(qty > stock){
       alert('Not enough stock');
       return;
     }
-    addToCartLogic(cart);
+    addToCart(cart);
   }
 
   useEffect(() => {
