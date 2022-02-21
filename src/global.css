@@ -74,11 +74,11 @@ code {
 section {
   height: 100%;
   width: 100%;
-  overflow: scroll;
 }
 
+a,
 section a {
-  text-decoration: none;
+  text-decoration: none !important;
 }
 
 figure {

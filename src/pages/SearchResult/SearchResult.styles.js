@@ -9,22 +9,7 @@ const ProductsLayout = styled.div`
   height: auto;
   grid-template-rows: auto;
   grid-row-gap: 0%;
-  grid-template-columns: 85% 15%;
-  grid-column-gap: 0%;
-  /* HD STYLES MD */
-  @media screen and (min-width: ${MEDIA_QUERIES.md}) and (max-width: calc(${MEDIA_QUERIES.lg} - 1px)) {
-    grid-template-columns: 80% 20%;
-  }
-
-  /* START 1366x768 (MOST COMMON) size LG */
-  @media screen and (min-width: ${MEDIA_QUERIES.lg}) and (max-width: calc(${MEDIA_QUERIES.xl} - 1px)) {
-    grid-template-columns: 82% 18%;
-  }
-
-  /* FULL HD STYLES XL */
-  @media screen and (min-width: ${MEDIA_QUERIES.xl}) {
-    grid-template-columns: 85% 15%;
-  }
+  grid-template-columns: 100%;
 `;
 
 const ProductsGrid= styled.div`

@@ -12,9 +12,10 @@ function useGeneralContext() {
 
 function GeneralContextProvider({ children }) {
   const [displaySidebar, setDisplaySidebar] = useState(false);
+  const [search, setSearch] = useState(false);
 
   return (
-    <GeneralContext.Provider value={{ displaySidebar, setDisplaySidebar }}>
+    <GeneralContext.Provider value={{ displaySidebar, setDisplaySidebar, search, setSearch }}>
       {children}
     </GeneralContext.Provider>
   );
