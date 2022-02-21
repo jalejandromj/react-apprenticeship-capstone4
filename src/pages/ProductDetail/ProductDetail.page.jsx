@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
+import { useGeneralContext } from '../../state/GeneralContext';
 import { useProductDetail } from '../../utils/hooks/useProductDetail';
 import Badge from '../../components/Badge';
 import Button from "../../components/Button";
@@ -12,6 +13,7 @@ import { BuyPanel, CarouselPanel, Figure, Image, SpecsList, TagsList } from './P
 import { capitalizeFirstLetter } from "../../utils/utils.js";
 
 function ProductDetailPage() {
+  const { cart, setCart } = useGeneralContext();
   const [qty, setQty] = useState(1);
   const [productDetail, setProductDetail] = useState(null);
   const { productId } = useParams();
@@ -37,12 +39,18 @@ function ProductDetailPage() {
       alert('Not enough stock');
       return;
     }
+    console.log(cart);
+    setCart(prevState => ({
+      ...prevState,
+      [productId]: {each: productDetail[0].data.price, qty: qty},
+      totalQty: prevState.totalQty+parseInt(qty)
+    }));
   }
 
   useEffect(() => {
     if (Object.keys(productDetailResp.data).length !== 0)
       setProductDetail(productDetailResp.data.results);
-  }, [productDetailResp]);
+  }, [ productDetailResp ]);
   
   return (
     <section className="content productdetail-page" style={{padding: "0% 2% 0% 2%"}}>
@@ -70,13 +78,13 @@ function ProductDetailPage() {
             </Row>
             <Row>
               <Col md={12}>
-                <TagsList className='list-none' elemNumb={2}>
-                  {productDetail &&
-                      productDetail[0].tags.map((tag, index) =>
-                      <li key={`badge-${index}`}><Badge>{tag}</Badge></li>
-                    )
-                  }
+              {productDetail && (
+                <TagsList className='list-none' elemNumb={productDetail[0].tags.length}>
+                  {productDetail[0].tags.map((tag, index) =>
+                    <li key={`badge-${index}`}><Badge>{tag}</Badge></li>
+                  )}
                 </TagsList>
+              )}
               </Col>
             </Row>
             <Row>

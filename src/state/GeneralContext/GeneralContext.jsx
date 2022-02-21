@@ -11,11 +11,12 @@ function useGeneralContext() {
 }
 
 function GeneralContextProvider({ children }) {
+  const [cart, setCart] = useState({totalQty: 0});
   const [displaySidebar, setDisplaySidebar] = useState(false);
   const [search, setSearch] = useState(false);
 
   return (
-    <GeneralContext.Provider value={{ displaySidebar, setDisplaySidebar, search, setSearch }}>
+    <GeneralContext.Provider value={{ cart, setCart, displaySidebar, setDisplaySidebar, search, setSearch }}>
       {children}
     </GeneralContext.Provider>
   );

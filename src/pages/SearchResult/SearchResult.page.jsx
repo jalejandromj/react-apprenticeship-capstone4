@@ -39,7 +39,7 @@ function SearchResultPage() {
   useEffect(() => {
     if (Object.keys(searchProdResp.data).length !== 0)
       setProducts(searchProdResp.data);
-  }, [searchProdResp, search]);
+  }, [searchProdResp]);
 
   return (
     <section className="content searchresult-page" style={{height: "auto", padding: "0% 2% 0% 2%"}}>
