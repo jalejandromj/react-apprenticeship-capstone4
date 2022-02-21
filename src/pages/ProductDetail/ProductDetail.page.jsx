@@ -31,6 +31,16 @@ function ProductDetailPage() {
     )
   });
 
+  const addToCartLogic = (cart) => {
+    let desiredProdQty = cart[productId] ? cart[productId].qty+parseInt(qty) : parseInt(qty);
+
+    setCart(prevState => ({
+      ...prevState,
+      [productId]: {each: productDetail[0].data.price, qty: desiredProdQty},
+      totalQty: prevState.totalQty+parseInt(qty)
+    }));
+  }
+
   function handleSubmit(e) {
     e.preventDefault();
     let stock = productDetail ? productDetail[0].data.stock : stock = null;
@@ -39,12 +49,7 @@ function ProductDetailPage() {
       alert('Not enough stock');
       return;
     }
-    console.log(cart);
-    setCart(prevState => ({
-      ...prevState,
-      [productId]: {each: productDetail[0].data.price, qty: qty},
-      totalQty: prevState.totalQty+parseInt(qty)
-    }));
+    addToCartLogic(cart);
   }
 
   useEffect(() => {
@@ -104,7 +109,12 @@ function ProductDetailPage() {
             <Row style={{position: "absolute", bottom: "2%", left: "4%"}}>
               <Col md={12}>
                 {productDetail &&
-                  <Button className="selected" style={{width: "92%"}}>Add to cart - ${qty*productDetail[0].data.price}</Button>
+                  <Button className="selected" 
+                          disabled={productDetail[0].data.stock > 0 ? false : true} 
+                          style={{width: "92%"}}
+                  >
+                    Add to cart - ${qty*productDetail[0].data.price}
+                  </Button>
                 }
               </Col>
             </Row>
