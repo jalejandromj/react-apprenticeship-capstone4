@@ -13,10 +13,9 @@ import { capitalizeFirstLetter } from "../../utils/utils.js";
 function SearchResultPage() {
   let navigate = useNavigate();
   const { search } = useGeneralContext();
-  console.log(search);
   const [productsEndpoint, setProductsEndpoint] = useState(null);
   const [products, setProducts] = useState(null);
-  const searchProdResp = useSearchProducts(search);
+  const searchProdResp = useSearchProducts(search, productsEndpoint);
 
   const RenderProducts = () => products.results.map((item, index) => {
 
@@ -33,17 +32,15 @@ function SearchResultPage() {
   });
 
   const handlePagination = (current, desired) => {
-    console.log(productsEndpoint);
     if((desired > 0) && (desired <= products.total_pages))
-      setProductsEndpoint(`%5B%5Bat%28document.type%2C+%22product%22%29%5D%5D&page=${desired}&pageSize=12&languageCode=en-us`);
+      setProductsEndpoint(`%5B%5Bat%28document.type%2C+%22product%22%29%5D%5D&q=%5B%5Bfulltext%28document%2C+%22${search}%22%29%5D%5D&page=${desired}&pageSize=20&languageCode=en-us`);
   }
 
   useEffect(() => {
-    console.log(searchProdResp);
     if (Object.keys(searchProdResp.data).length !== 0)
       setProducts(searchProdResp.data);
   }, [searchProdResp, search]);
-  console.log(products);
+
   return (
     <section className="content searchresult-page" style={{height: "auto", padding: "0% 2% 0% 2%"}}>
       <Row> 
@@ -71,7 +68,7 @@ function SearchResultPage() {
                 <Row>
                   <Col md={7} xl={9}/>
                   <Col md={5} xl={3} style={{alignItems: "end"}}>
-                    {(products && !products.total_pages === 1) && <Pagination content={products} handlePagination={handlePagination}/>}
+                    {(products && products.total_pages > 1) && <Pagination content={products} handlePagination={handlePagination}/>}
                   </Col>
                 </Row>
               </ProductsGrid>

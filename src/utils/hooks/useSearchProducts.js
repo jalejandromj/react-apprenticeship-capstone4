@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { API_BASE_URL } from '../constants';
 import { useLatestAPI } from './useLatestAPI';
 
-export function useSearchProducts(searchTerm) {
+export function useSearchProducts(searchTerm, url) {
   const { ref: apiRef, isLoading: isApiMetadataLoading } = useLatestAPI();
   const [searchProducts, setSearchProducts] = useState(() => ({
     data: {},
@@ -17,15 +17,18 @@ export function useSearchProducts(searchTerm) {
     const controller = new AbortController();
 
     async function getSearchProducts() {
+      let endpoint = `${API_BASE_URL}/documents/search?ref=${apiRef}&q=${encodeURIComponent(
+                        '[[at(document.type, "product")]]'
+                      )}&q=${encodeURIComponent(
+                        `[[fulltext(document, "${searchTerm}")]]`
+                      )}&lang=en-us&pageSize=20`;
+      if(url)
+        endpoint = `${API_BASE_URL}/documents/search?ref=${apiRef}&q=${url}`;
+
       try {
         setSearchProducts({ data: {}, isLoading: true });
 
-        const response = await fetch(
-          `${API_BASE_URL}/documents/search?ref=${apiRef}&q=${encodeURIComponent(
-            '[[at(document.type, "product")]]'
-          )}&q=${encodeURIComponent(
-            `[[fulltext(document, "${searchTerm}")]]`
-          )}&lang=en-us&pageSize=20`,
+        const response = await fetch(endpoint,
           {
             signal: controller.signal,
           }
@@ -44,7 +47,7 @@ export function useSearchProducts(searchTerm) {
     return () => {
       controller.abort();
     };
-  }, [apiRef, isApiMetadataLoading, searchTerm]);
+  }, [apiRef, isApiMetadataLoading, searchTerm, url]);
 
   return searchProducts;
 }
