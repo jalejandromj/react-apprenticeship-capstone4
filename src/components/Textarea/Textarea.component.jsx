@@ -1,8 +1,8 @@
 import React, {useEffect} from 'react';
 
-import { InputElement } from './Input.styles';
+import { TextareaElement } from './Textarea.styles';
 
-function Input({defaultValue, label, min, name, noLabel, onChange, placeholder, required, type, theme, value }) {
+function Textarea({defaultValue, label, name, noLabel, onChange, placeholder, required, theme, value }) {
 
   useEffect(() => {
 
@@ -11,18 +11,16 @@ function Input({defaultValue, label, min, name, noLabel, onChange, placeholder, 
   return (
     <>
       {!noLabel && <label htmlFor={label.toLowerCase()} style={{color: "rgb(var(--indigo-blue))"}}><span>{label}</span></label>}
-      <InputElement aria-label={label}
+      <TextareaElement aria-label={label}
                     defaultValue={defaultValue ? defaultValue : undefined}
-                    min={min !== undefined ? min : null}
                     name={name.toLowerCase()}
                     onChange={onChange}
                     placeholder={placeholder ? placeholder : null} 
                     required={required ? true : false}
-                    theme={theme} 
-                    type={type}
+                    theme={theme}
                     value={value} />
     </>
   );
 }
 
-export default Input;
+export default Textarea;

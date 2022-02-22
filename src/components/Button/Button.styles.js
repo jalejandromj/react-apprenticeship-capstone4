@@ -9,7 +9,7 @@ const ButtonElement = styled.button`
   border: 1px solid rgb(var(--light-beige));
   color: rgba(var(--discreet-white));
   font-size: 1rem;
-  padding: 12px 30px;
+  padding: 8px 20px;
   text-align: center;
   transition: ease-out 0.2s;
   :hover& {

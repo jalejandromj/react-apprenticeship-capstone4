@@ -2,10 +2,17 @@ import React from 'react';
 
 import { ButtonElement } from './Button.styles';
 
-function Button({blue, className, submit, onClick, style, children}) {
+function Button({ className, disabled, onClick, style, submit, children}) {
 
   return (
-    <ButtonElement className={className} style={style} blue={blue} type={submit && "submit"} onClick={onClick}>{children}</ButtonElement>
+    <ButtonElement className={className}
+                   disabled={disabled}
+                   onClick={onClick}
+                   style={style} 
+                   type={submit && "submit"}
+    >
+      {children}
+    </ButtonElement>
   );
 }
 

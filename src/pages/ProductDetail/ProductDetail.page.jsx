@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
+import { useGeneralContext } from '../../state/GeneralContext';
 import { useProductDetail } from '../../utils/hooks/useProductDetail';
 import Badge from '../../components/Badge';
 import Button from "../../components/Button";
@@ -12,6 +13,7 @@ import { BuyPanel, CarouselPanel, Figure, Image, SpecsList, TagsList } from './P
 import { capitalizeFirstLetter } from "../../utils/utils.js";
 
 function ProductDetailPage() {
+  const { cart, setCart } = useGeneralContext();
   const [qty, setQty] = useState(1);
   const [productDetail, setProductDetail] = useState(null);
   const { productId } = useParams();
@@ -29,20 +31,38 @@ function ProductDetailPage() {
     )
   });
 
+  const addToCart = (cart) => {
+    let desiredProdQty = cart[productId] ? cart[productId].qty+parseInt(qty) : parseInt(qty);
+
+    setCart(prevState => ({
+      ...prevState,
+      [productId]: {
+        eachPrice: productDetail[0].data.price, 
+        img: productDetail[0].data.mainimage.url, 
+        name: productDetail[0].data.name, 
+        qty: desiredProdQty,
+        stock: productDetail[0].data.stock,
+      },
+      totalQty: prevState.totalQty+parseInt(qty)
+    }));
+  }
+
   function handleSubmit(e) {
     e.preventDefault();
+    
     let stock = productDetail ? productDetail[0].data.stock : stock = null;
 
     if(qty > stock){
       alert('Not enough stock');
       return;
     }
+    addToCart(cart);
   }
 
   useEffect(() => {
     if (Object.keys(productDetailResp.data).length !== 0)
       setProductDetail(productDetailResp.data.results);
-  }, [productDetailResp]);
+  }, [ productDetailResp ]);
   
   return (
     <section className="content productdetail-page" style={{padding: "0% 2% 0% 2%"}}>
@@ -70,13 +90,13 @@ function ProductDetailPage() {
             </Row>
             <Row>
               <Col md={12}>
-                <TagsList className='list-none' elemNumb={2}>
-                  {productDetail &&
-                      productDetail[0].tags.map((tag, index) =>
-                      <li key={`badge-${index}`}><Badge>{tag}</Badge></li>
-                    )
-                  }
+              {productDetail && (
+                <TagsList className='list-none' elemNumb={productDetail[0].tags.length}>
+                  {productDetail[0].tags.map((tag, index) =>
+                    <li key={`badge-${index}`}><Badge>{tag}</Badge></li>
+                  )}
                 </TagsList>
+              )}
               </Col>
             </Row>
             <Row>
@@ -96,7 +116,12 @@ function ProductDetailPage() {
             <Row style={{position: "absolute", bottom: "2%", left: "4%"}}>
               <Col md={12}>
                 {productDetail &&
-                  <Button className="selected" style={{width: "92%"}}>Add to cart - ${qty*productDetail[0].data.price}</Button>
+                  <Button className="selected" 
+                          disabled={productDetail[0].data.stock > 0 ? false : true} 
+                          style={{width: "92%"}}
+                  >
+                    Add to cart - ${qty*productDetail[0].data.price}
+                  </Button>
                 }
               </Col>
             </Row>
