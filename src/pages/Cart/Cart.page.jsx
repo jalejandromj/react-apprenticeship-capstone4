@@ -9,6 +9,7 @@ import Col from "../../components/Col";
 import Input from '../../components/Input';
 import Row from "../../components/Row";
 import { Figure, Image } from './Cart.styles';
+import { calculateTotal } from "../../utils/utils.js";
 
 function CartPage() {
   const { cart, setCart } = useGeneralContext();
@@ -49,16 +50,6 @@ function CartPage() {
     }
   });
 
-  const calculateTotal = () =>  {
-    let totalPrice = 0;
-    for(let key of Object.keys(cart)){
-      if(key !== "totalQty")
-        totalPrice = totalPrice+(cart[key].qty*cart[key].eachPrice);
-    }
-
-    return totalPrice;
-  };
-
   const updateCartQty = (e, productId, stock) => {
     let desiredProdQty = e.target.value;
 
@@ -70,6 +61,7 @@ function CartPage() {
       setStockError(true);
       return;
     }
+    setStockError(false);
 
     setCart(prevState => ({
       ...prevState,
@@ -106,7 +98,7 @@ function CartPage() {
             <tbody>
               <RenderRows />
             </tbody>
-            <CartTableFooter calculateTotal={calculateTotal}/>
+            <CartTableFooter calculateTotal={calculateTotal} cart={cart}/>
           </table>
         </Col>
       </Row>

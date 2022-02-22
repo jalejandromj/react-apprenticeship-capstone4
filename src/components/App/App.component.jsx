@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import GeneralContextProvider from '../../state/GeneralContext';
 import CartPage from '../../pages/Cart';
+import CheckoutPage from '../../pages/Checkout';
 import HomePage from '../../pages/Home';
 import ProductDetailPage from '../../pages/ProductDetail';
 import ProductListPage from '../../pages/ProductList';
@@ -23,6 +24,7 @@ function App() {
           <Routes>
             <Route exact path="/" element={<HomePage />} />
             <Route path="/cart" element={<CartPage />} />
+            <Route path="/checkout" element={<CheckoutPage />} />
             <Route exact path="/home" element={<HomePage />} />
             <Route path="/products" element={<ProductListPage />} />
             <Route path="/product/:productId" element={<ProductDetailPage />} />
